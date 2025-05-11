@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Translator</title>
+   <!-- <style src="styles.css"></style> -->
+    <link rel="stylesheet" href="src/front/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Code Translator</h1>
+
+        <div class="translator-container">
+            <!-- Source Code Section -->
+            <div class="code-section">
+                <div class="section-header">
+                    <h2 class="section-title">Source Code</h2>
+                    <p class="section-description">Paste your code or upload a file</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sourceLanguage">Source Language</label>
+                    <select id="sourceLanguage">
+                        <option value="" disabled selected>Select language</option>
+                        <!-- Options will be added by JavaScript -->
+                    </select>
+                </div>
+
+                <div class="tab-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="paste">
+                            <span>📝</span> Paste Code
+                        </div>
+                        <div class="tab" data-tab="upload">
+                            <span>📁</span> Upload File
+                        </div>
+                    </div>
+
+                    <div class="tab-content active" id="paste-tab">
+                        <textarea id="sourceCode" placeholder="Paste your code here..."></textarea>
+                    </div>
+
+                    <div class="tab-content" id="upload-tab">
+                        <div class="file-upload-container" id="fileUploadArea">
+                            <div class="file-upload-icon">📤</div>
+                            <p class="file-upload-text">Click to upload or drag and drop</p>
+                            <p class="file-upload-subtext">Supported file types: .py, .java, .hs</p>
+                            <input type="file" id="fileUpload" style="display: none;" accept=".js,.ts,.py,.java,.cs,.cpp,.php,.rb,.go,.swift,.kt,.rs,.txt">
+                        </div>
+                        <div class="file-name" id="fileName" style="display: none;"></div>
+                        <div class="file-preview" id="filePreview" style="display: none;">
+                            <label>File Content Preview</label>
+                            <div class="file-preview-content" id="filePreviewContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target Code Section -->
+            <div class="code-section">
+                <div class="section-header">
+                    <h2 class="section-title">Translated Code</h2>
+                    <p class="section-description">View your translated code</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="targetLanguage">Target Language</label>
+                    <select id="targetLanguage">
+                        <option value="" disabled selected>Select language</option>
+                        <!-- Options will be added by JavaScript -->
+                    </select>
+                </div>
+
+                <textarea id="translatedCode" placeholder="Translated code will appear here..." readonly></textarea>
+            </div>
+        </div>
+
+        <div class="translate-button-container">
+            <button id="translateButton" class="translate-button" disabled>
+                Translate <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="src/front/script.js"></script>
+</body>
+</html>
