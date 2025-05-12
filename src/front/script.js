@@ -1,3 +1,4 @@
+// Programming languages list
 const programmingLanguages = [
     "Python",
     "Java",
@@ -17,6 +18,7 @@ const fileUploadArea = document.getElementById('fileUploadArea');
 const fileName = document.getElementById('fileName');
 const filePreview = document.getElementById('filePreview');
 const filePreviewContent = document.getElementById('filePreviewContent');
+const getStartedBtn = document.getElementById('getStartedBtn');
 
 // State variables
 let sourceLanguage = '';
@@ -63,16 +65,16 @@ function setupFileUpload() {
 
     fileUploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
-        fileUploadArea.style.borderColor = '#4a5568';
+        fileUploadArea.style.borderColor = '#6b9ac4';
     });
 
     fileUploadArea.addEventListener('dragleave', () => {
-        fileUploadArea.style.borderColor = '#cbd5e0';
+        fileUploadArea.style.borderColor = '#d9e2ec';
     });
 
     fileUploadArea.addEventListener('drop', (e) => {
         e.preventDefault();
-        fileUploadArea.style.borderColor = '#cbd5e0';
+        fileUploadArea.style.borderColor = '#d9e2ec';
         
         if (e.dataTransfer.files.length) {
             handleFile(e.dataTransfer.files[0]);
@@ -155,12 +157,33 @@ function handleTranslate() {
     }, 1500);
 }
 
+// Smooth scroll to translator section
+function setupScrollToTranslator() {
+    getStartedBtn.addEventListener('click', () => {
+        document.getElementById('translator').scrollIntoView({ 
+            behavior: 'smooth' 
+        });
+    });
+
+    // Also handle navigation links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    });
+}
+
 // Initialize the application
 function init() {
     populateLanguageDropdowns();
     setupTabs();
     setupFileUpload();
     setupTranslation();
+    setupScrollToTranslator();
 }
 
 // Run initialization when DOM is fully loaded

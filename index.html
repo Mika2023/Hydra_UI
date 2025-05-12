@@ -3,13 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Translator</title>
-   <!-- <style src="styles.css"></style> -->
+    <title>Code Translator - Transform Your Code</title>
     <link rel="stylesheet" href="src/front/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 </head>
 <body>
-    <div class="container">
-        <h1>Code Translator</h1>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="logo">CodeTranslator</a>
+            <div class="nav-links">
+                <a href="#team" class="nav-link">Our Team</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#translator" class="nav-link">Translator</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Code Between Languages</h1>
+            <p>Our advanced code translation tool helps developers convert code between multiple programming languages quickly and accurately, saving you time and effort.</p>
+            <button class="cta-button" id="getStartedBtn">Start Now!</button>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="team-content">
+            <h2>Our Team</h2>
+            <p class="team-description">
+                We are a dedicated team of software engineers and language experts passionate about breaking down barriers between programming languages. With backgrounds in compiler design, machine learning, and software development, we've created a tool that makes code translation seamless and accurate.
+            </p>
+            <p class="team-description">
+                Founded in 2023, our mission is to help developers learn new languages, migrate codebases, and understand code regardless of the language it's written in.
+            </p>
+            
+            <!-- Team Members Grid -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Team Member 1 -->
+                     <div class="swiper-slide">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="src/images/Julia.jpg" alt="Me!!!">
+                            </div>
+                            <h3 class="member-name">Юлия Серышева</h3>
+                            <p class="member-title">UX Designer & Developer</p>
+                            <p class="member-bio">Alex has over 10 years of experience in compiler design and language processing. Previously worked at Google on their translation systems.</p>
+                        </div>
+                     </div>
+                    
+                    
+                    <!-- Team Member 2 -->
+                     <div class="swiper-slide">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="src/images/Katya.jpg" alt="Katya">
+                            </div>
+                            <h3 class="member-name">Екатерина Камаева</h3>
+                            <p class="member-title">Hydra-Haskell researcher</p>
+                            <p class="member-bio">Sarah specializes in natural language processing and has developed several AI models for code analysis and transformation.</p>
+                        </div>
+                     </div>
+                    
+                    
+                    <!-- Team Member 3 -->
+                     <div class="swiper-slide">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="src/images/Dasha.jpg" alt="Dasha">
+                            </div>
+                            <h3 class="member-name">Дарья Демина</h3>
+                            <p class="member-title">Hydra-Java researcher</p>
+                            <p class="member-bio">Michael is proficient in 8 programming languages and leads the development of our web interface and API integrations.</p>
+                        </div>
+                     </div>
+                    
+                    
+                    <!-- Team Member 4 -->
+                     <div class="swiper-slide">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="src/images/Lilya.jpg" alt="Lilya">
+                            </div>
+                            <h3 class="member-name">Лилия Дурнина</h3>
+                            <p class="member-title">Hydra-Python researcher</p>
+                            <p class="member-bio">Emily has a background in linguistics and computer science, focusing on the semantic mapping between different programming paradigms.</p>
+                        </div>
+                     </div>
+                    
+                    
+                    <!-- Team Member 5 -->
+                     <div class="swiper-slide">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <img src="src/images/Hatasha.jpg" alt="Hatasha">
+                            </div>
+                            <h3 class="member-name">Наталья Чупрова</h3>
+                            <p class="member-title">Parser</p>
+                            <p class="member-bio">David combines his expertise in user experience design and front-end development to create intuitive and accessible interfaces.</p>
+                        </div>
+                     </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-content">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">Multiple Languages</h3>
+                    <p>Support for 3 programming languages - Python, Java, Haskell.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3 class="feature-title">File Upload</h3>
+                    <p>Upload your code files directly or paste code snippets for quick translation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Fast Processing</h3>
+                    <p>Our optimized translation engine delivers results in seconds, not minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Translator Section -->
+    <div class="container" id="translator">
+        <h2 class="translator-title">Code Translator</h2>
 
         <div class="translator-container">
             <!-- Source Code Section -->
@@ -45,7 +175,7 @@
                         <div class="file-upload-container" id="fileUploadArea">
                             <div class="file-upload-icon">📤</div>
                             <p class="file-upload-text">Click to upload or drag and drop</p>
-                            <p class="file-upload-subtext">Supported file types: .py, .java, .hs</p>
+                            <p class="file-upload-subtext">Supported file types: .hs, .py, .java</p>
                             <input type="file" id="fileUpload" style="display: none;" accept=".js,.ts,.py,.java,.cs,.cpp,.php,.rb,.go,.swift,.kt,.rs,.txt">
                         </div>
                         <div class="file-name" id="fileName" style="display: none;"></div>
@@ -83,6 +213,75 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2023 CodeTranslator. All rights reserved.</p>
+            <p>A powerful tool for developers to translate code between programming languages.</p>
+        </div>
+    </footer>
+
     <script src="src/front/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+   <script>
+        const teamSwiper = new Swiper('.mySwiper', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 30,
+            loop: false,
+            watchSlidesProgress: true,
+            slideToClickedSlide: true,
+            touchEventsTarget: 'container',
+            preventInteractionOnTransition: true,
+            mousewheel: {
+                forceToAxis: true,    // Только горизонтальная прокрутка
+                sensitivity: 0.8,    // Чувствительность
+                eventsTarget: '.mySwiper' // Цель для обработки событий
+            },
+            breakpoints: {
+                768: {
+                    spaceBetween: 40
+                }
+            },
+            on: {
+                init: function() {
+                    // Добавляем индикатор прокрутки
+                    this.el.style.setProperty('--scroll-arrow', 'block');
+                }
+            }
+        });
+        window.addEventListener('resize', () => {
+        teamSwiper.update();
+        });
+
+        // Инициализируем правильное положение
+        teamSwiper.on('init', () => {
+            teamSwiper.slides.forEach((slide, index) => {
+                if (index === teamSwiper.activeIndex) {
+                    slide.style.opacity = 1;
+                    slide.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // // Визуальный индикатор прокрутки
+        // const style = document.createElement('style');
+        // style.textContent = `
+        //     .mySwiper::after {
+        //         content: '← Scroll →';
+        //         position: absolute;
+        //         top: 10px;
+        //         left: 50%;
+        //         transform: translateX(-50%);
+        //         color: #4a7ca5;
+        //         font-size: 0.8rem;
+        //         opacity: 0.7;
+        //         display: var(--scroll-arrow, 'none');
+        //     }
+        // `;
+        // document.head.appendChild(style);
+    </script>
 </body>
 </html>
