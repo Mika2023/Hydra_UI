@@ -19,6 +19,8 @@ const fileName = document.getElementById('fileName');
 const filePreview = document.getElementById('filePreview');
 const filePreviewContent = document.getElementById('filePreviewContent');
 const getStartedBtn = document.getElementById('getStartedBtn');
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
 
 // State variables
 let sourceLanguage = '';
@@ -176,6 +178,19 @@ function setupScrollToTranslator() {
         });
     });
 }
+
+navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        navToggle.classList.toggle('active');
+});
+    
+// Закрытие меню при клике на ссылку
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        navToggle.classList.remove('active');
+    });
+});
 
 // Initialize the application
 function init() {
