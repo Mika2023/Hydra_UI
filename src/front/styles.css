@@ -433,6 +433,35 @@ textarea {
     cursor: not-allowed;
 }
 
+.generated-areas {
+    display: flex;
+    gap: 20px;
+    
+    margin-top: 10px;
+}
+
+.generated-area{
+    min-width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.show-more-link{
+    display: flex;
+    justify-content: center;
+    margin: 12px;
+    padding: 10px;
+}
+
+#showMoreLink{
+    color: #4a7ca5;
+}
+
+#showMoreLink:hover{
+    color: #22649b;
+}
+
+
 /* Navigation */
 .nav {
     background-color: #4a7ca5;
@@ -535,6 +564,10 @@ textarea {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .translator-container {
+        flex-direction: column;
+    }
+
+    .generated-areas{
         flex-direction: column;
     }
     

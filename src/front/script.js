@@ -5,6 +5,12 @@ const programmingLanguages = [
     "Haskell"
 ];
 
+const API_BASE = 'http://127.0.0.1:5000'; // сервер бэка
+    const ENDPOINTS = {
+        translate: '/translate',
+        languages: '/v1/code/languages'
+    };
+ 
 // DOM elements
 const sourceLanguageSelect = document.getElementById('sourceLanguage');
 const targetLanguageSelect = document.getElementById('targetLanguage');
@@ -21,6 +27,10 @@ const filePreviewContent = document.getElementById('filePreviewContent');
 const getStartedBtn = document.getElementById('getStartedBtn');
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
+const showMoreLink = document.getElementById('showMoreLink')
+const translatedDSLArea = document.getElementById('translatedDSL')
+const parsedCodeArea = document.getElementById('translatedParse')
+const translatedAreas = document.querySelector('.generated-area')
 
 // State variables
 let sourceLanguage = '';
@@ -135,28 +145,78 @@ function updateTranslateButtonState() {
     translateButton.disabled = !isValid || isTranslating;
 }
 
-function handleTranslate() {
-    // Get the latest source code from textarea if it was entered directly
-    if (tabs[0].classList.contains('active')) {
-        sourceCode = sourceCodeTextarea.value;
-    }
+async function handleTranslate() {
+  if (tabs[0].classList.contains('active')) {
+    sourceCode = sourceCodeTextarea.value;
+  }
 
-    // In a real implementation, this would send the code to your server
-    // for translation. For now, we'll just simulate the process.
+  try {
     isTranslating = true;
     translateButton.disabled = true;
     translateButton.textContent = 'Translating...';
 
-    // Simulate server processing time
-    setTimeout(() => {
-        // This is just a placeholder. In a real app, you would get the result from your server.
-        translatedCodeTextarea.value = 
-            `// Translated from ${sourceLanguage} to ${targetLanguage}\n// This is a placeholder for the actual translation\n\n${sourceCode}`;
-        
-        isTranslating = false;
-        translateButton.disabled = false;
-        translateButton.innerHTML = 'Translate <span>→</span>';
-    }, 1500);
+    console.log("Fetching responce to ", API_BASE, ENDPOINTS.translate);
+
+    const response = await fetch(`${API_BASE}${ENDPOINTS.translate}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        source_code: sourceCode,
+        source_lang: sourceLanguage,
+        target_lang: targetLanguage
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(await response.text());
+    }
+
+    const blob = await response.blob();
+
+    const zip = await JSZip.loadAsync(blob);
+    zip.forEach(async (relativePath, file) => {
+        const content = await file.async("string");
+
+        if (relativePath.startsWith("hydra")){
+            translatedCodeTextarea.value += relativePath;
+            translatedCodeTextarea.value += content;
+        }
+        else if (relativePath.startsWith("genDSL")) translatedDSLArea.value = content;
+        else if (relativePath.startsWith("initialFile")) parsedCodeArea.value = content;
+        else{
+            const fileData = await file.async("blob");
+            const downloadLink = document.createElement("a");
+            downloadLink.href = URL.createObjectURL(fileData);
+            downloadLink.download = relativePath.split("/").pop();
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            downloadLink.remove();
+        }
+    });
+
+    showMoreLink.hidden = false;
+
+    // const downloadUrl = window.URL.createObjectURL(blob);
+
+    // const a = document.createElement('a');
+    // a.href = downloadUrl;
+    // a.download = 'translated_output.zip';
+    // document.body.appendChild(a);
+    // a.click();
+    // a.remove();
+
+    // window.URL.revokeObjectURL(downloadUrl); // Освобождаем память
+
+  } catch (err) {
+    console.error('Ошибка запроса:', err);
+    alert(err);
+  } finally {
+    isTranslating = false;
+    translateButton.disabled = false;
+    translateButton.innerHTML = 'Translate <span>→</span>';
+  }
 }
 
 // Smooth scroll to translator section
@@ -183,7 +243,11 @@ navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         navToggle.classList.toggle('active');
 });
-    
+
+showMoreLink.addEventListener('click', () =>{
+    translatedDSLArea.hidden = !translatedDSLArea.hidden;
+    parsedCodeArea.hidden = !parsedCodeArea.hidden;
+})
 // Закрытие меню при клике на ссылку
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {

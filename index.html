@@ -181,7 +181,7 @@
                             <div class="file-upload-icon">📤</div>
                             <p class="file-upload-text">Click to upload or drag and drop</p>
                             <p class="file-upload-subtext">Supported file types: .hs, .py, .java</p>
-                            <input type="file" id="fileUpload" style="display: none;" accept=".js,.ts,.py,.java,.cs,.cpp,.php,.rb,.go,.swift,.kt,.rs,.txt">
+                            <input type="file" id="fileUpload" style="display: none;" accept=".py,.java,.hs,.txt">
                         </div>
                         <div class="file-name" id="fileName" style="display: none;"></div>
                         <div class="file-preview" id="filePreview" style="display: none;">
@@ -208,6 +208,8 @@
                 </div>
 
                 <textarea id="translatedCode" placeholder="Translated code will appear here..." readonly></textarea>
+
+                
             </div>
         </div>
 
@@ -215,6 +217,17 @@
             <button id="translateButton" class="translate-button" disabled>
                 Translate <span>→</span>
             </button>
+        </div>
+
+        <div class="show-more">
+            <div class="show-more-link">
+                <a id="showMoreLink" hidden="true">Show more</a>
+            </div>
+            
+            <div class="generated-areas">
+                <textarea id="translatedDSL" hidden="true" class="generated-area" placeholder="Translated code to DSL will appear here..." readonly></textarea>
+                <textarea id="translatedParse" hidden="true" class="generated-area" placeholder="Parsed code after translation will appear here..." readonly></textarea>
+            </div>
         </div>
     </div>
 
@@ -227,6 +240,7 @@
     </footer>
 
     <script src="src/front/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.0/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <!-- Initialize Swiper -->
