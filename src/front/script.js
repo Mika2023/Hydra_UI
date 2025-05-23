@@ -184,8 +184,8 @@ async function handleTranslate() {
             translatedCodeTextarea.value += content;
         }
         else if (relativePath.startsWith("genDSL")) translatedDSLArea.value = content;
-        else if (relativePath.startsWith("initialFile")) parsedCodeArea.value = content;
-        else{
+        else if (relativePath.startsWith("parsedFiles")) parsedCodeArea.value += content;
+        else if (!relativePath.startsWith("initialFile")){
             const fileData = await file.async("blob");
             const downloadLink = document.createElement("a");
             downloadLink.href = URL.createObjectURL(fileData);
@@ -197,17 +197,6 @@ async function handleTranslate() {
     });
 
     showMoreLink.hidden = false;
-
-    // const downloadUrl = window.URL.createObjectURL(blob);
-
-    // const a = document.createElement('a');
-    // a.href = downloadUrl;
-    // a.download = 'translated_output.zip';
-    // document.body.appendChild(a);
-    // a.click();
-    // a.remove();
-
-    // window.URL.revokeObjectURL(downloadUrl); // Освобождаем память
 
   } catch (err) {
     console.error('Ошибка запроса:', err);
